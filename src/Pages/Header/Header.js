@@ -1,9 +1,11 @@
 import React from 'react';
 import './Header.css'
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Header = () => {
+    const { user, logOut } = useAuth();
     return (
         <div>
             <div>
@@ -22,9 +24,12 @@ const Header = () => {
                                     <Nav.Link to="/about">
                                         <NavLink className="nav ms-5" to="/about">About Us</NavLink>
                                     </Nav.Link>
-                                    <Nav.Link to="/about">
-                                        <NavLink className="nav ms-5" to="/login">Log in</NavLink>
-                                    </Nav.Link>
+                                    {user?.email ?
+                                    <Button onClick={logOut} variant="light">Logout</Button> :
+                                    <Nav.Link to="/login">Login</Nav.Link>}
+                                    <Navbar.Text>
+                                        Signed in as: <a href="#login">{user?.displayName}</a>
+                                    </Navbar.Text>
                                 </Nav>
                             </Container>
                         </Navbar>
