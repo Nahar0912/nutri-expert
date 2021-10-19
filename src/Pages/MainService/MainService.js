@@ -4,7 +4,7 @@ import Service from '../HomeMain/Service/Service';
 const MainService = () => {
     const [services, setServices] = useState([])
     useEffect(() => {
-        fetch('service.JSON')
+        fetch('service.json')
             .then(res => res.json())
             .then(data => setServices(data));
     }, [])

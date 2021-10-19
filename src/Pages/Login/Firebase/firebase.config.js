@@ -1,4 +1,3 @@
-console.log(process.env);
 const firebaseConfig = {
     apiKey: "AIzaSyAbyeeg-BC0-hw1INmT9UiUaSyTStc27B4",
     authDomain: "nutri-expert.firebaseapp.com",

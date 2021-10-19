@@ -6,6 +6,7 @@ import About from './Pages/About/About';
 import Footer from './Pages/Footer/Footer';
 import Login from './Pages/Login/Login/Login';
 import Booking from './Pages/Booking/Booking';
+import PrivateRoute from './Pages/Login/PrivateRoute/PrivateRoute'
 import NotFound from './Pages/NotFound/NotFound';
 import './App.css';
 
@@ -31,9 +32,9 @@ function App() {
             <Route path="/login">
               <Login></Login>
             </Route>
-            <Route path="/booking/:serviceId">
+            <PrivateRoute path="/booking/:serviceId">
               <Booking></Booking>
-            </Route>
+            </PrivateRoute>
             <Route path="*">
               <NotFound></NotFound>
             </Route>
