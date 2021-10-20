@@ -18,7 +18,6 @@ const Booking = () => {
 
     useEffect(() => {
         const Bookinginfo = bookings.find((data) => data.id === serviceId)
-        console.log(Bookinginfo);
         setSingleBooking(Bookinginfo);
     }, [bookings]);
 
