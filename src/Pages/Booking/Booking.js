@@ -1,14 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+
 
 const Booking = () => {
     const { serviceId } = useParams();
+    const [bookings, setBookings] = useState([]);
+    
+    const [singleBooking, setSingleBooking] = useState({});
+
+    
+    useEffect(() => {
+        fetch('/service.json')
+            .then(res => res.json())
+            .then(data => setBookings(data))
+    }, []);
+
+
+    useEffect(() => {
+        const Bookinginfo = bookings.find((data) => data.id === serviceId)
+        console.log(Bookinginfo);
+        setSingleBooking(Bookinginfo);
+    }, [bookings]);
+
     return (
         <div>
-            <h2>Welcome to our proggram: {serviceId}</h2>
-            <p>
-                Nutritionists use ideas from molecular biology, biochemistry, and genetics to understand how nutrients affect the human body.Nutrition also focuses on how people can use dietary choices to reduce the risk of disease, what happens if a person has too much or too little of a nutrient, and how allergies work.Nutrients provide nourishment. Proteins, carbohydrates, fat, vitamins, minerals, fiber, and water are all nutrients. If people do not have the right balance of nutrients in their diet, their risk of developing certain health conditions increases.This article will explain the different nutrients a person needs and why. It will also look at the role of the dietitian and the nutritionist.
-            </p>
+            <h2>Welcome to our program: {singleBooking?.name}</h2>
+            <br />
+            <div>
+            <img src={singleBooking?.img} alt="" width='500px'/>
+            </div>
+            <br />
+            <div>
+                <p>{ singleBooking?.info}</p>
+            </div>
         </div>
     );
 };
